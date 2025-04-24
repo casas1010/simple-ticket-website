@@ -5,14 +5,11 @@ import 'package:simple_ticket/components/navigator.dart';
 import 'pages/doc_page.dart';
 import 'pages/main_page.dart';
 
-// Define a constant for your theme color
 const Color customColor = Color.fromARGB(255, 144, 162, 182);
-const Color customBlue = Color(0xFF35495F); // Updated primary color
-
+const Color customBlue = Color(0xFF35495F); 
 const double MOBILE_SCREEN_WIDTH = 350.0;
 
 Future<void> main() async {
-  // Ensure that dotenv is loaded before running the app
   WidgetsFlutterBinding.ensureInitialized();
   // await dotenv.load(fileName: ".env");
 

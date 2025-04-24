@@ -29,8 +29,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
         child: showImage
             ? Image.network(
-                'https://iili.io/26emATx.png',
-                height: 80,
+                'https://i.imgur.com/8nDAzf1.png"',
+                height: 20,
                 key: ValueKey<int>(1),
               )
             : Text(

@@ -25,7 +25,7 @@ class _DocsPageState extends State<DocsPage> {
   Widget build(BuildContext context) {
     if (_is_loading) {
       return Center(
-        child: CircularProgressIndicator(), // Display a loading spinner
+        child: CircularProgressIndicator(), 
       );
     }
 
@@ -60,10 +60,10 @@ class _DocsPageState extends State<DocsPage> {
 
   Future<void> _init() async {
     await _docs_util.load_data_per_context();
-    setState(() {
-      _documentationData = _docs_util.documentationData;
-      _is_loading = false;
-    });
+
+    _documentationData = _docs_util.documentationData;
+    _is_loading = false;
+    setState(() {});
   }
 }
 
@@ -102,7 +102,9 @@ class Sidebar extends StatelessWidget {
               title: Text(theme, style: TextStyle(fontWeight: FontWeight.bold)),
               children: themeEntry.value.map((item) {
                 return ListTile(
-                  title: Text('${item['Class'] ?? item['Object'] ?? item['Table'] ?? item['Method name'] ?? item['Properties']}'),
+                  
+                  title: Text("Aaa"),
+                  // title: Text('${item['Class'] ?? item['Object'] ?? item['Table'] ?? item['Method name'] ?? item['Properties']}'),
                   onTap: () => onItemSelected(documentationData.indexOf(item)),
                 );
               }).toList(),
@@ -141,8 +143,7 @@ class DocumentationContent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (item['Mode'] != null) Text('Mode: ${item['Mode']}'),
-                if (item['Theme'] != null)
-                  Text('Theme: ${item['Theme']}', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                if (item['Theme'] != null) Text('Theme: ${item['Theme']}', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 if (item['Sub theme'] != null) Text('Sub theme: ${item['Sub theme']}'),
                 if (item['Table'] != null) Text('Table: ${item['Table']}'),
                 if (item['Class'] != null) Text('Class: ${item['Class']}'),

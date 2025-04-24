@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /
+
+# Serve existing files and directories directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect all other requests to index.html
+RewriteRule . /index.html [L]
+
+# PHP handler configuration (keep this if you need it)
+<IfModule mime_module>
+    AddHandler application/x-httpd-ea-php80___lsphp .php .php5 .phtml
+</IfModule>
