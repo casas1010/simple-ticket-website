@@ -26,6 +26,8 @@ class _GuidePageState extends State<GuidePage> {
       return const Center(child: CircularProgressIndicator());
     }
 
+    print("_documentation_content:\n${_documentation_content}");
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -44,7 +46,7 @@ class _GuidePageState extends State<GuidePage> {
               itemBuilder: (context, index) {
                 final item = _toc_items[index];
                 final isSubsection = item.startsWith('  ');
-
+                
                 return InkWell(
                   onTap: () => _scroll_to_section(item.trim()),
                   child: Padding(
