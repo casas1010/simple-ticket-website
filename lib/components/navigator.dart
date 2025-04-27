@@ -17,7 +17,7 @@ class NavigatorScreen extends StatefulWidget {
 
 class _NavigatorScreenState extends State<NavigatorScreen> {
   bool _show_image = false;
-  String _current_route = '/'; // Default route to display
+  String _current_route = '/guide'; // Default route to display
 
   final List<Map<String, dynamic>> _modules = [
     {
