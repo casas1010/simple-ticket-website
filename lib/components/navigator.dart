@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_ticket/pages/doc_page.dart';
 import 'package:simple_ticket/pages/guide_page.dart';
 import 'package:simple_ticket/pages/main_page.dart';
+import '../pages/about_us_page.dart';
 import '../pages/privacy_page.dart';
 import 'carousel.dart';
 import 'custom_app_bar.dart';
@@ -20,6 +21,11 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
 
   final List<Map<String, dynamic>> _modules = [
     {
+      "route": "/about-us",
+      "widget": AboutUsPage(),
+      "label": "About us",
+    },
+    {
       "route": "/privacy",
       "widget": PrivacyPage(),
       "label": "Privacy",
@@ -29,8 +35,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       "widget": DocsPage(),
       "label": "Docs",
     },
-
-      {
+    {
       "route": "/guide",
       "widget": GuidePage(),
       "label": "Guide",
@@ -39,7 +44,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       "route": "/",
       "widget": MainScreen(),
       "label": "Main",
-    },
+    }
   ];
 
   @override
