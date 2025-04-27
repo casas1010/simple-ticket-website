@@ -21,19 +21,9 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
 
   final List<Map<String, dynamic>> _modules = [
     {
-      "route": "/about-us",
-      "widget": AboutUsPage(),
-      "label": "About us",
-    },
-    {
-      "route": "/privacy",
-      "widget": PrivacyPage(),
-      "label": "Privacy",
-    },
-    {
-      "route": "/docs",
-      "widget": DocsPage(),
-      "label": "Docs",
+      "route": "/",
+      "widget": MainScreen(),
+      "label": "Main",
     },
     {
       "route": "/guide",
@@ -41,10 +31,20 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       "label": "Guide",
     },
     {
-      "route": "/",
-      "widget": MainScreen(),
-      "label": "Main",
-    }
+      "route": "/apis",
+      "widget": ApisPage(),
+      "label": "Apis",
+    },
+    {
+      "route": "/privacy",
+      "widget": PrivacyPage(),
+      "label": "Privacy",
+    },
+    {
+      "route": "/about-us",
+      "widget": AboutUsPage(),
+      "label": "About us",
+    },
   ];
 
   @override

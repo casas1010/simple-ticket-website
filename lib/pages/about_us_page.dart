@@ -10,29 +10,29 @@ class AboutUsPage extends StatefulWidget {
 class _AboutUsPageState extends State<AboutUsPage> {
   final List<Map<String, dynamic>> _users = [
     {
-      "name": "John Calderario",
-      "position": "CEO",
-      "images": ['https://i.imgur.com/RI4B4ja.png'],
-      "description": "Visionary leader and strategist.",
-    },
-    {
-      "name": "James Moise",
-      "position": "CTO",
-      "images": ['https://i.imgur.com/TIh5kU5.png'],
-      "description": "Tech enthusiast and innovator.",
-    },
-    {
-      "name": "Connor McCarthy",
-      "position": "COO",
-      "images": ['https://i.imgur.com/WvlgWpL.png'],
-      "description": "Tech enthusiast and innovator.",
-    },
-    {
       "name": "Juan Casas",
-      "position": "Developer",
+      "position": "Lead",
       "images": ['https://i.imgur.com/konOPMO.png'],
       "description": "Operations guru and organizer.",
     },
+    // {
+    //   "name": "John Calderario",
+    //   "position": "CEO",
+    //   "images": ['https://i.imgur.com/RI4B4ja.png'],
+    //   "description": "Visionary leader and strategist.",
+    // },
+    // {
+    //   "name": "James Moise",
+    //   "position": "CTO",
+    //   "images": ['https://i.imgur.com/TIh5kU5.png'],
+    //   "description": "Tech enthusiast and innovator.",
+    // },
+    // {
+    //   "name": "Connor McCarthy",
+    //   "position": "COO",
+    //   "images": ['https://i.imgur.com/WvlgWpL.png'],
+    //   "description": "Tech enthusiast and innovator.",
+    // },
   ];
 
   @override

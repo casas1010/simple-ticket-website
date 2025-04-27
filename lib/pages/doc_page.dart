@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../util/docs_loader.dart';
 
-class DocsPage extends StatefulWidget {
+class ApisPage extends StatefulWidget {
   @override
-  _DocsPageState createState() => _DocsPageState();
+  _ApisPageState createState() => _ApisPageState();
 }
 
-class _DocsPageState extends State<DocsPage> {
+class _ApisPageState extends State<ApisPage> {
   late DocsUtil _docs_util;
   late List<Map<String, dynamic>>? _documentationData = [];
   late bool _is_loading = true;
