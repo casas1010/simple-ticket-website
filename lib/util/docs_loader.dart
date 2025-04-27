@@ -4,14 +4,16 @@ import 'package:excel/excel.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-class DocsUtil {
-  List<Map<String, dynamic>>? documentationData;
+import '../main.dart';
 
-  Future<void> load_data_per_context() async {
+class DocsUtil {
+  List<Map<String, dynamic>>? documentation_data;
+
+  Future<void> load_data() async {
     var url = Uri.parse('https://api.github.com/repos/casas1010/simple_ticket_docs/contents/documentation.xlsx');
 
     // var token = dotenv.env['GITHUB_TOKEN'];
-    var token = "ghp_FQfrl9xHDPHPi"+"89UME9YvAKbBnC77u2eYWkD";
+
     // print("token: ${token}");
 
 
@@ -19,11 +21,10 @@ class DocsUtil {
     var response = await http.get(
       url,
       headers: {
-        'Authorization': 'token $token',
+        'Authorization': 'token $GITHUB_TOKEN',
       },
     );
 
-    print("response:: ${response.statusCode}");
 
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
@@ -43,7 +44,7 @@ class DocsUtil {
             var columns = rows[0].map((cell) => cell?.value?.toString()).toList();
 
             // Transform the data into the expected type
-            documentationData = rows.skip(1).map((row) {
+            documentation_data = rows.skip(1).map((row) {
               return Map.fromIterables(
                 columns.map((col) => col ?? ''), // Ensure keys are non-null
                 row.map((cell) => cell?.value?.toString() ?? ''), // Ensure values are non-null
@@ -62,4 +63,11 @@ class DocsUtil {
       throw Exception("Failed to load Excel file metadata");
     }
   }
+
+
+
+
+
 }
+
+

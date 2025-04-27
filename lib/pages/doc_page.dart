@@ -25,7 +25,7 @@ class _DocsPageState extends State<DocsPage> {
   Widget build(BuildContext context) {
     if (_is_loading) {
       return Center(
-        child: CircularProgressIndicator(), 
+        child: CircularProgressIndicator(),
       );
     }
 
@@ -59,9 +59,9 @@ class _DocsPageState extends State<DocsPage> {
   }
 
   Future<void> _init() async {
-    await _docs_util.load_data_per_context();
+    await _docs_util.load_data();
 
-    _documentationData = _docs_util.documentationData;
+    _documentationData = _docs_util.documentation_data;
     _is_loading = false;
     setState(() {});
   }
@@ -102,7 +102,6 @@ class Sidebar extends StatelessWidget {
               title: Text(theme, style: TextStyle(fontWeight: FontWeight.bold)),
               children: themeEntry.value.map((item) {
                 return ListTile(
-                  
                   title: Text("Aaa"),
                   // title: Text('${item['Class'] ?? item['Object'] ?? item['Table'] ?? item['Method name'] ?? item['Properties']}'),
                   onTap: () => onItemSelected(documentationData.indexOf(item)),

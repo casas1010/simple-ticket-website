@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_ticket/pages/doc_page.dart';
+import 'package:simple_ticket/pages/guide_page.dart';
 import 'package:simple_ticket/pages/main_page.dart';
 import '../pages/privacy_page.dart';
 import 'carousel.dart';
@@ -14,54 +15,44 @@ class NavigatorScreen extends StatefulWidget {
 }
 
 class _NavigatorScreenState extends State<NavigatorScreen> {
-  bool showImage = false;
-  String currentRoute = '/'; // Default route to display
+  bool _show_image = false;
+  String _current_route = '/'; // Default route to display
 
-  @override
-  void initState() {
-    super.initState();
-    // Grabbing the current route from the browser
-    currentRoute = html.window.location.pathname!;
+  final List<Map<String, dynamic>> _modules = [
+    {
+      "route": "/privacy",
+      "widget": PrivacyPage(),
+      "label": "Privacy",
+    },
+    {
+      "route": "/docs",
+      "widget": DocsPage(),
+      "label": "Docs",
+    },
 
-    // Optionally, you can adjust it here if you want to ensure no leading slash
-    currentRoute = currentRoute.isEmpty || currentRoute == '/' ? '/' : currentRoute;
-
-    Future.delayed(Duration(seconds: 2), () {
-      setState(() {
-        showImage = true;
-      });
-    });
-  }
-
-  // Function to update the URL in the browser
-  void _update_url(String route) {
-    setState(() {
-      currentRoute = route;
-    });
-
-    html.window.history.pushState(null, '', route);
-  }
+      {
+      "route": "/guide",
+      "widget": GuidePage(),
+      "label": "Guide",
+    },
+    {
+      "route": "/",
+      "widget": MainScreen(),
+      "label": "Main",
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
-    Widget body;
-
-    switch (currentRoute) {
-      case '/privacy':
-        body = PrivacyPage();
-        break;
-      case '/docs':
-        body = DocsPage();
-        break;
-
-      default:
-        body = MainScreen();
-        break;
-    }
+    // Find the module corresponding to the current route
+    Widget body = _modules.firstWhere(
+      (module) => module['route'] == _current_route,
+      orElse: () => _modules.firstWhere((module) => module['route'] == '/')['widget'], // Default to MainScreen
+    )['widget'];
 
     return Scaffold(
       appBar: CustomAppBar(
-        showImage: showImage,
+        showImage: _show_image,
         onNavigation: (route) {
           // Navigate to the new route and update the URL
           _update_url(route);
@@ -78,30 +69,43 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                 color: Theme.of(context).primaryColor,
               ),
             ),
-            // ListTile(
-            //   title: Text('Docs'),
-            //   onTap: () {
-            //     _update_url('/docs');
-            //     Navigator.pop(context);
-            //   },
-            // ),
-            ListTile(
-              title: Text('Privacy'),
-              onTap: () {
-                _update_url('/privacy');
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Main'),
-              onTap: () {
-                _update_url('/');
-                Navigator.pop(context);
-              },
-            ),
+            ..._modules.map((module) {
+              return ListTile(
+                title: Text(module['label']),
+                onTap: () {
+                  _update_url(module['route']);
+                  Navigator.pop(context);
+                },
+              );
+            }).toList(),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Grabbing the current route from the browser
+    _current_route = html.window.location.pathname!;
+
+    // Optionally, you can adjust it here if you want to ensure no leading slash
+    _current_route = _current_route.isEmpty || _current_route == '/' ? '/' : _current_route;
+
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        _show_image = true;
+      });
+    });
+  }
+
+  // Function to update the URL in the browser
+  void _update_url(String route) {
+    setState(() {
+      _current_route = route;
+    });
+
+    html.window.history.pushState(null, '', route);
   }
 }
